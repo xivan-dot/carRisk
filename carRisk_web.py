@@ -10,14 +10,15 @@ import sklearn
 
 st.set_page_config(page_title="Clasificador de riego en vehiculos CarRisk", layout="centered")
     # Título principal centrado
-# Cambiar la fuente de toda la aplicación a Georgia
+# Cambiar la fuente de toda la aplicación
 st.markdown("""
     <style>
     html, body, [class*="css"] {
-        font-family: 'Georgia', serif;
+        font-family: 'Comic Sans MS', cursive, sans-serif;
     }
     </style>
 """, unsafe_allow_html=True)
+
 
 # Función para cargar imágenes locales como base64
 def load_image_as_base64(file_path):
