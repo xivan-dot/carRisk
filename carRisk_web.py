@@ -8,8 +8,17 @@ import sklearn
 # Configuración de la página (debe ser la primera instrucción)
 ############################################################################################################################
 
-st.set_page_config(page_title="Clasificador diferencial del Dengue, Zika y Chikungunya", layout="centered")
+st.set_page_config(page_title="Clasificador de riego en vehiculos CarRisk", layout="centered")
     # Título principal centrado
+# Cambiar la fuente de toda la aplicación a Georgia
+st.markdown("""
+    <style>
+    html, body, [class*="css"] {
+        font-family: 'Georgia', serif;
+    }
+    </style>
+""", unsafe_allow_html=True)
+
 # Función para cargar imágenes locales como base64
 def load_image_as_base64(file_path):
     with open(file_path, "rb") as f:
