@@ -14,10 +14,23 @@ st.set_page_config(page_title="Clasificador de riego en vehiculos CarRisk", layo
 st.markdown("""
     <style>
     html, body, [class*="css"] {
-        font-family: 'Comic Sans MS', cursive, sans-serif;
+        font-family: 'Impact', sans-serif !important;
+    }
+
+    h1, h2, h3, h4, h5, h6, p, label, div, button, input, select, textarea {
+        font-family: 'Impact', sans-serif !important;
+    }
+
+    .stButton>button, .stSelectbox, .stSlider {
+        font-family: 'Impact', sans-serif !important;
+    }
+
+    table, th, td {
+        font-family: 'Impact', sans-serif !important;
     }
     </style>
 """, unsafe_allow_html=True)
+
 
 
 # Función para cargar imágenes locales como base64
