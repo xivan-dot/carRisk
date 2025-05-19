@@ -21,19 +21,13 @@ image_base64 = load_image_as_base64("logovehiculo.png")
 # HTML con la imagen convertida
 st.markdown(
     f"""
-    <style>
-    .top-right {{
-        position: absolute;
-        top: 10px;
-        right: 10px;
-    }}
-    </style>
-    <div class="top-right">
-        <img src="data:image/png;base64,{image_base64}" alt="Logo" width="150">
+    <div style="display: flex; justify-content: flex-end; align-items: center; margin-bottom: 20px;">
+        <img src="data:image/png;base64,{image_base64}" alt="Logo" width="150" style="border-radius: 10px;">
     </div>
     """,
     unsafe_allow_html=True
 )
+
 
 
 
