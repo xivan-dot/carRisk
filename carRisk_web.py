@@ -7,7 +7,12 @@ import sklearn
 
 # Configuración de la página (debe ser la primera instrucción)
 ############################################################################################################################
-
+# Función para cargar imágenes locales como base64
+def load_image_as_base64(file_path):
+    with open(file_path, "rb") as f:
+        return base64.b64encode(f.read()).decode()
+# Convertir imagen a base64
+image_base64 = load_image_as_base64("logovehiculo.png")
 st.set_page_config(page_title="Clasificador de riego en vehiculos CarRisk", layout="centered")
     # Título principal centrado
 # Cambiar la fuente de toda la aplicación
@@ -32,25 +37,15 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 
-
-# Función para cargar imágenes locales como base64
-def load_image_as_base64(file_path):
-    with open(file_path, "rb") as f:
-        return base64.b64encode(f.read()).decode()
-
-# Convertir imagen a base64
-image_base64 = load_image_as_base64("logovehiculo.png")
-
 # HTML con la imagen convertida
 st.markdown(
     f"""
-    <div style="display: flex; justify-content: flex-end; align-items: center; margin-bottom: 20px;">
-        <img src="data:image/png;base64,{image_base64}" alt="Logo" width="150" style="border-radius: 10px;">
+    <div style="text-align: center;">
+        <img src="data:image/png;base64,{image_base64}" alt="Logo" width="250">
     </div>
     """,
     unsafe_allow_html=True
 )
-
 
 
 
