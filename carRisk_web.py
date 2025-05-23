@@ -16,25 +16,21 @@ image_base64 = load_image_as_base64("logovehiculo.png")
 st.set_page_config(page_title="Clasificador de riego en vehiculos CarRisk", layout="centered")
     # Título principal centrado
 # Cambiar la fuente de toda la aplicación
-st.markdown("""
+st.markdown(
+    f"""
     <style>
-    html, body, [class*="css"] {
-        font-family: 'Impact', sans-serif !important;
-    }
-
-    h1, h2, h3, h4, h5, h6, p, label, div, button, input, select, textarea {
-        font-family: 'Impact', sans-serif !important;
-    }
-
-    .stButton>button, .stSelectbox, .stSlider {
-        font-family: 'Impact', sans-serif !important;
-    }
-
-    table, th, td {
-        font-family: 'Impact', sans-serif !important;
-    }
+    .top-right {{
+        position: absolute;
+        top: 10px;
+        right: 10px;
+    }}
     </style>
-""", unsafe_allow_html=True)
+    <div class="top-right">
+        <img src="data:image/png;base64,{image_base64}" alt="Logo" width="150">
+    </div>
+    """,
+    unsafe_allow_html=True
+)
 
 
 # HTML con la imagen convertida
