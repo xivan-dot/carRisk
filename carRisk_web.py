@@ -7,15 +7,18 @@ import sklearn
 
 # Configuración de la página (debe ser la primera instrucción)
 ############################################################################################################################
+
+st.set_page_config(page_title="Clasificador diferencial para predecir el riesgo en vehiculos", layout="centered")
+    # Título principal centrado
 # Función para cargar imágenes locales como base64
 def load_image_as_base64(file_path):
     with open(file_path, "rb") as f:
         return base64.b64encode(f.read()).decode()
+
 # Convertir imagen a base64
 image_base64 = load_image_as_base64("logovehiculo.png")
-st.set_page_config(page_title="Clasificador de riego en vehiculos CarRisk", layout="centered")
-    # Título principal centrado
-# Cambiar la fuente de toda la aplicación
+
+# HTML con la imagen convertida
 st.markdown(
     f"""
     <style>
@@ -27,17 +30,6 @@ st.markdown(
     </style>
     <div class="top-right">
         <img src="data:image/png;base64,{image_base64}" alt="Logo" width="150">
-    </div>
-    """,
-    unsafe_allow_html=True
-)
-
-
-# HTML con la imagen convertida
-st.markdown(
-    f"""
-    <div style="text-align: center;">
-        <img src="data:image/png;base64,{image_base64}" alt="Logo" width="250">
     </div>
     """,
     unsafe_allow_html=True
@@ -61,9 +53,9 @@ def clasify(clas):
 def main():
     
     # Título principal
-    st.title("Clasificador de riesgo al conducir CarrRisk")
+    st.title("Clasificador de riesgos al manejar un vehiculo")
     #Titulo de Sidebar
-    st.sidebar.header('variables dadas por el conductor')
+    st.sidebar.header('datos del Ususario')
 
  # Entradas del usuario
 
@@ -71,10 +63,10 @@ def main():
 
     def user_input_features():
         # Edad como valor entero , entre 0 y 60 años)
-        edad = st.sidebar.slider('Edad del conductor', min_value=18, max_value=60, value=25, step=1)  # step=1 garantiza que se seleccionen valores enteros
+        edad = st.sidebar.slider('age', min_value=18, max_value=60, value=25, step=1)  # step=1 garantiza que se seleccionen valores enteros
         # Seleccionar el tipo de vehículo
-        option = ['sport', 'minivan', 'family', 'combi']
-        Cartype = st.sidebar.selectbox('Seleccione el tipo de vehiculo que desea conducir', option)
+        option = ['combi', 'sport', 'family', 'minivan']
+        Cartype = st.sidebar.selectbox('elegir su tipo de vehiculo', option)
     
         data = {
             'age': edad,
@@ -111,32 +103,32 @@ def main():
     #Selección del modelo
         # Seleccionar el modelo 
     option = ['DT', 'Knn','NN']
-    model = st.sidebar.selectbox('¿Modelo con el que desea realizar la prediccion?',option)
+    model = st.sidebar.selectbox('seleccionar el modelo con el que se llevara a cabo la prediccion',option)
 
-    st.subheader('Variables Seleccionadas')
+    st.subheader('Valores elegidos')
     st.write(df)
-    st.subheader(f'Modelo de prediccion seleccionado: {model}')
+    st.subheader(f'Modelo elegido: {model}')
 
 
     # Crear un botón para realizar la predicción
-    if st.button('Realizar Predicción de riesgo'):
+    if st.button('Realizar Predicción'):
         
         if model == 'DT':
             Y_fut = modelTree.predict(df)
             resultado = labelencoder.inverse_transform(Y_fut)
-            st.success(f'La predicción sobre el nivel de riesgo es: {clasify(resultado[0])}')
+            st.success(f'el riesgo al conducir es: {clasify(resultado[0])}')
         elif model == 'Knn':
             #Normalización
             df[['age']] = min_max_scaler.transform(df[['age']])
             Y_fut = modelKnn.predict(df)
             resultado = labelencoder.inverse_transform(Y_fut)
-            st.success(f'La predicción sobre el nivel de riesgo es: {clasify(resultado[0])}')
+            st.success(f'el riesgo al conducir es: {clasify(resultado[0])}')
         else:
             #Normalización
             df[['age']] = min_max_scaler.transform(df[['age']])
             Y_fut = modelNN.predict(df)
             resultado = labelencoder.inverse_transform(Y_fut)
-            st.success(f'La predicción sobre el nivel de riesgo es: {clasify(resultado[0])}')
+            st.success(f'el riesgo al conducir es: {clasify(resultado[0])}')
 
 
     
